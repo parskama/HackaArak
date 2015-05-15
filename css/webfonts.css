@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'traffic';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../webfonts/BTraffic.eot');
+  src: url('../webfonts/BTraffic.eot?#iefix') format('embedded-opentype'),
+       url('../webfonts/BTraffic.woff') format('woff'),
+       url('../webfonts/BTraffic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../webfonts/GOTHIC.eot');
+  src: url('../webfonts/GOTHIC.eot?#iefix') format('embedded-opentype'),
+       url('../webfonts/GOTHIC.woff') format('woff'),
+       url('../webfonts/GOTHIC.ttf') format('truetype');
+}

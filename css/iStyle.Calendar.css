@@ -1,0 +1,94 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+body{
+	direction:rtl;
+	font-family:'traffic';
+}
+#calendar{
+	position:relative;
+	width:535px;
+	margin:0 auto;
+	overflow:hidden;
+}
+#actionbtn{
+	position:fixed;
+	right:10px;
+	top:200px;
+	width:150px;
+	height:96px;
+}
+#actionvalue{
+	position:fixed;
+	right:165px;
+	width:50px;
+	top:200px;
+	height:96px;
+}
+#days_wrapper{
+	position:relative;
+	width:440px;
+	margin:0 auto;
+	height:96px;
+	background:#e7e7e7;
+	overflow:hidden;
+	white-space:nowrap;
+}
+#month_wrapper{
+	position:relative;
+	height:40px;
+	top:0px;
+	float:right;
+	display:inline-block;
+	overflow:hidden;
+}
+#calendar ul#month{
+	position:relative;
+	width:95px;
+	text-align:center;
+	list-style:none;
+}
+#calendar ul#month li{
+	position:relative;
+	height:40px;
+	width:100%;
+	text-align:center;
+	line-height:40px;
+	font-size:18px;
+	font-weight:bold;
+}
+#days_wrapper ul#days{
+	position:relative;
+	width:1488px;
+	height:40px;
+	list-style:none;
+	padding:0px;
+	margin:0px;
+	right:0px;
+}
+#days li{
+	position:relative;
+	width:40px;
+	display:inline-block;
+	float:right;
+	padding:0px;
+	margin:0px;
+}
+#days li img{
+	padding:0px;
+	margin:0px;
+	width:40px;
+}
+#indicator{
+	position:relative;
+	display:block;
+	width:440px;
+	background:#ccc;
+	height:48px;
+}
+#indicator img{
+	position:relative;
+	right:0px;
+	width:40px;
+}

@@ -1,0 +1,362 @@
+@charset "utf-8";
+/* CSS Document */
+html, body, div, span, applet, object, iframe, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, panel, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, block, caption, tbody, tfoot, thead, tr, th, td {
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+background: transparent;
+overflow: visible;
+}
+@font-face
+{
+    font-family: 'traffic';
+    src: url('fonts/BTraffic.eot?#') format('eot'),  /* IE6-8 */
+    url('fonts/BTraffic.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+ */
+    url('fonts/BTraffic.ttf') format('truetype');  /* Saf3-5, Chrome4+, FF3.5, Opera 10+ */
+}
+input
+{
+	font-family: 'traffic';
+}
+body
+{
+	direction:rtl;
+	font-family: 'traffic';
+	background:#EFF3F4;
+}
+header
+{
+	float:right;
+	position:fixed;
+	width:180px;
+	height:100%;
+	background:#39435C;
+}
+.title_h
+{
+	float:right;
+	width:180px;
+	height:40px;
+	background:#273744;
+	color:#fff;
+}
+.txts
+{
+	float:right;
+	margin-top:8px;
+	margin-right:20px;
+}
+.img_header
+{
+	float:right;
+}
+li
+{
+	list-style:none;
+}
+.ul_header
+{
+	float:right;
+	width:180px;
+	margin-top:30px;
+}
+.ul_header ul
+{
+	float:right;
+	width:180px;	
+}
+.ul_header ul li
+{
+	float:right;
+	margin-top:25px;
+	margin-right:20px;
+}
+.ul_header ul li a
+{
+	color:#fff;
+}
+a{
+	text-decoration:none;
+}
+.imgheader
+{
+	
+}
+.fixtop
+{
+	width:100%;
+	height:60px;
+	background:#fff;
+	position:fixed;
+}
+.addevent
+{
+	float:right;
+	width:500px;
+	margin-right:200px;
+	margin-top:100px;
+	color:#293744;	
+}
+.header_addevent
+{
+	float:right;
+	width:500px;
+	height:40px;
+	background:#FAFAFA;
+	border-bottom:1px #EEEEEE solid;	
+	color:#293744;
+	padding-right:50px;
+	padding-top:13px;
+}
+.content_addevent
+{
+	float:right;
+	width:550px;
+	background:#fff;
+	padding-bottom:20px;
+}
+.labeltypeevent
+{
+	float:right;
+	margin-right:25px;	
+	margin-top:4px;
+	width:105px;
+}
+#select_addevent,#select_typeevent
+{
+	float:right;
+	width:150px;
+	height:30px;
+	font-family: 'traffic';
+	font-size:16px;
+
+	margin-top:2px;
+}
+#box1
+{
+	margin-top:30px;
+	float:right;
+	width:550px;
+}
+.txtaddevent
+{
+	float:right;
+	width:190px;
+	height:30px;
+	border:1px #E7E7E7 solid;
+	padding-right:10px;
+	border-radius:5px;
+}
+.box2
+{
+	float:right;
+	width:550px;
+	margin-top:15px;
+}
+.box2_2
+{
+	float:none !important;
+	width:150px;
+	
+	margin-right:90px;
+}
+.box2_2 input{
+	margin-top:30px !important;
+}
+#txtnameevent
+{
+	margin-right:25px;
+}
+#selectpmstart,#selectpmend
+{
+	width:80px;
+	text-align:center;
+	height:29px;
+	float:right;
+	margin-top:2px
+}
+.txtclock
+{
+	float:right;
+	width:87px;
+	height:30px;
+	border:1px #E7E7E7 solid;
+	border-radius:5px;
+	margin-right:15px;
+	text-align:center;	
+}
+#selectpmend
+{
+	margin-right:10px;
+}
+.txtarea_addevent
+{
+	width:373px;
+	float:left;
+	margin-left:40px;
+	resize:none;
+	border:1px #E7E7E7 solid;
+	height:90px;
+	border-radius:5px;
+}
+.btnsaveevent
+{
+	float:left;
+	margin-left:40px;
+	background:#23B7E5;
+	border:none;
+	color:#fff;
+	width:70px;
+	height:29px;
+	border-radius:5px;
+}
+#linkfb,#linktweet
+{
+	width:373px;
+}
+.submitevent
+{
+	float:right;
+	margin-right:200px;
+	margin-top:100px;
+	width:700px;
+	color:#293646;
+}
+.title_submit
+{
+	float:right;
+	width:700px;
+	height:50px;
+	background:#FAFAFA;
+	border-bottom:1px #EEEEEE solid;	
+	color:#293744;
+}
+.texttitle_submit
+{
+	margin-right:35px;
+	margin-top:12px;
+}
+.content_submit
+{
+	float:right;
+	widows:700px;
+	padding-bottom:40px;
+	background:#fff;
+}
+.box3
+{
+	float:right;
+	width:700px;
+	margin-top:20px;
+}
+.labelbox3
+{
+	float:right;
+	margin-right:40px;
+}
+#selectcitybox3,#selecttypebox3
+{
+	float:right;
+	width:150px;
+	height:25px;
+	text-align:center;
+	margin-right:20px;
+	font-size:16px;
+}
+.label2box3
+{
+	float:right;
+	margin-right:20px;
+}
+#selecttypebox3
+{
+	float:right;
+}
+select
+{
+	font-family: 'traffic';
+}
+.txtsearchbyname
+{
+	float:left;
+	margin-left:14px;
+	width:145px;
+	border-radius:5px;
+	border:1px #CCCCCC solid;
+	height:25px;
+	padding-right:5px;
+}
+#searchsubmit
+{
+	float:left;
+	margin-left:50px;
+	background:#23B7E5;
+	border:none;
+	color:#fff;
+	width:70px;
+	height:29px;
+	border-radius:5px;
+}
+.dispaysubmit
+{
+	float:right;
+	width:700px;
+	margin-top:100px;
+	margin-right:200px;
+	background:#fff;
+	padding-top:10px;
+	padding-bottom:10px;
+	color:#293744;
+}
+.ul-header
+{
+	float:right;
+	width:700px;
+}
+.ul-header li
+{
+	float:right;
+	
+}
+.lifirstname
+{
+	width:250px;
+	margin-right:20px;
+}
+.liemail
+{
+	width:300px;	
+}
+#organizer_wrapper{
+	width:85%;
+}
+.header_m{
+	width:80.7% !important;
+}
+.editboxtable{
+	position:relative;
+	width:100%;
+	padding:0px;
+	margin:0px;
+	text-align:center;
+}
+.editboxtable li{
+	display:inline-block;
+	width:13%;
+	padding:0px;
+	margin:0px;
+}
+#editboxheader{
+	font-weight:bold;
+}
+#fb,#li,#tw{
+	direction:ltr;
+}
+#editboxcontetnt_m{
+	font-size:13px;
+	padding:5px 0px;
+}
+.editboxheight{
+	height:190px !important;
+}

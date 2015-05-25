@@ -99,7 +99,7 @@ if(isset($_POST["command"]))
 			$password = md5(sha1($security->Check_Post($_POST["password"])));
 			if(empty($username) || empty($password))
 			{
-				echo "لطفا فیلدهای ضروری را پر کنید";
+				echo "empty";
 				exit();
 			}
 			else
@@ -134,13 +134,13 @@ if(isset($_POST["command"]))
 					}
 					else
 					{
-						echo "نام کاربری یا کلمه عبور اشتباه است";
+						echo "erroruserpass";
 						exit();
 					}
 				}
 				else
 				{
-					echo "خطایی رخ داده است! مجددا تلاش کنید";
+					echo "db";
 					exit();
 				}
 			}

@@ -157,6 +157,7 @@ function p_kit(str) {
 }
 ////////////// MeetUp Calendar \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 function MeetUpCalendar(day,month,time,c_sup,place,selected) {
+		archive_content(selected);
 		month=parseInt(month);
 		month_f(month);
 		selected_f(selected);
@@ -192,6 +193,33 @@ function MeetUpCalendar(day,month,time,c_sup,place,selected) {
 			left=400-rand;
 			$("#indicator img").animate({right:left},1000,"easeInOutExpo");
 		}
+}
+function archive_content(city){
+	reset_archive();
+	switch(city) {
+		case 1:
+			$("#archieve_content tr[id='اراک']").show("fast");
+			break;
+		case 2:
+			$("#archieve_content tr[id='تهران']").show("fast");
+			break;
+		case 3:
+			$("#archieve_content tr[id='اصفهان']").show("fast");
+			break;
+		case 4:
+			$("#archieve_content tr[id='شیراز']").show("fast");
+			break;
+		case 5:
+			$("#archieve_content tr[id='اهواز']").show("fast");
+			break;
+		case 6:
+			$("#archieve_content tr[id='مشهد']").show("fast");
+			break;
+		
+	}
+}
+function reset_archive(){
+	$("#archieve_content tr").hide("fast");
 }
 function month_f(month){
 	//var rand=Math.floor(Math.random() * 12);
@@ -240,5 +268,12 @@ $(document).ready(function() {
 				enable:true
 			}
 		});
+    });
+});
+////////////// AJAX GOOGLE MAP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+$(document).ready(function(e) {
+    $("#ajaxmap").click(function(e) {
+        var x=49.711705;
+		var y=34.102201;
     });
 });

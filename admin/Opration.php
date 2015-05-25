@@ -1,5 +1,8 @@
 <?php
-
+require_once("session.php");
+/* peyghame ok yani ba movafaghiat dar database zakhire shod **/
+/* peyghame db yani khata dar bar gharri ba database */
+/* peighame empty yani fielde morede nazar khali ferestade shode */
 if(isset($_POST["command"]))
 {
 	require_once("../func.php");
@@ -12,6 +15,7 @@ if(isset($_POST["command"]))
 		$city = $security->Check_Post($_POST["city"]);
 		if(!empty($city))
 		{
+			/* in ghesmat check mikone ke esme shahr tekrari nabashe */
 			$sql2 = "SELECT * FROM `city` WHERE `city` = ?";
 			$result = $connect->prepare($sql2);
 			$result->bindValue(1,$city);
@@ -25,6 +29,7 @@ if(isset($_POST["command"]))
 				}
 				else
 				{
+					/* agar esme shahr tekrari nabashe ezafe mishavad be jadval */
 					$sql = "INSERT INTO `city`(`city`) VALUES (?)";		
 					$result = $connect->prepare($sql);
 					$result->bindValue(1,$city);
@@ -45,11 +50,15 @@ if(isset($_POST["command"]))
 		}
 		else
 		{
+			
 			echo "empty";
 			exit();
 		}
 	}
 	/* end add city */
+	
+	/********** ********/
+	
 	/* edit city */
 	else if($command == "editcity")
 	{
@@ -59,6 +68,7 @@ if(isset($_POST["command"]))
 			$id = $security->Check_Post($_POST["id"]);
 			if(!empty($id) && !empty($city))
 			{
+				/* dar in ghesmat yek shahr o virayesh mikonim  */
 				$sql = "UPDATE `city` SET `city`=? WHERE `id` = ?";
 				$result = $connect->prepare($sql);
 				$result->bindValue(1,$city);
@@ -66,28 +76,60 @@ if(isset($_POST["command"]))
 				$check = $result->execute();
 				if($check)
 				{
+					
 					echo "ok";
 					exit();
 				}
 				else
 				{
+					
 					echo "db";
 					exit();
 				}
 			}
 			else
 			{
+				
 				echo "empty";
 				exit();
 			}
 		}
 	}
 	/* end edit city */
+	/* change password */
+	else if($command == "changepass")
+	{
+		$newpass = $security->Check_Post($_POST["newpss"]);
+		$email = $_SESSION["email"];
+		if(strlen($newpass) < 6 || strlen($newpass) > 32){
+			echo "کلمه عبور باید رشته ای بین 6 تا 32 کاراکتر باشد";
+			exit();
+		}
+		else{
+			$newpass = md5(sha1($newpass));
+			$sql = "UPDATE `singup` SET `password` = ? WHERE `email` = ?";
+			$reult = $connect->prepare($sql);
+			$result->bindValue(1,$newpass);
+			$result->bindValue(2,$email);
+			$check = $result->execute();
+			if($check){
+				echo "کلمه عبور شما با موفقیت تغییر پیدا کرد";
+				exit();
+			}
+			else
+			{
+				echo "db";
+			exit();
+			}
+		}
+	}
+	/* end change password */
 	/* delete city */
 	else if($command == "deletecity")
 	{
 		if(isset($_POST["id"]))
 		{
+			/* dar in ghesmat yek shahr o hazv mikone */ 
 			$id = intval($_POST["id"]);
 			$sql = "DELETE FROM `city` WHERE `id` = ?";
 			$result = $connect->prepare($sql);
@@ -117,6 +159,7 @@ if(isset($_POST["command"]))
 	/**** event ****/
 	else if($command == "addevent")
 	{
+		/* in ghesmat baraye ezafe kardane evente jadide */
 		$sql = "INSERT INTO `event`(`datestart`, `dateend`, `timestart`, `timeend`, `timestartpm`, `timeendpm`, `tags`, `location`, `map`, `city`,`nameevent`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 		$datestart = $security->Check_Post($_POST["datestart"]);
 		$dateend = $security->Check_Post($_POST["dateend"]);
@@ -137,20 +180,21 @@ if(isset($_POST["command"]))
 		$result->bindValue(5,$timestartpm);
 		$result->bindValue(6,$timeendpm);
 		$result->bindValue(7,$tags);
+
 		$result->bindValue(8,$location);
 		$result->bindValue(9,$map);
 		$result->bindValue(10,$city);
 		$result->bindValue(11,$name);
-		$check = $result->execute();
+		$check = $result->execute() or die(mysql_error);
 		if($check)
 		{
 			echo "ok";
-			exit();
+			//exit();
 		}
 		else
 		{
 			echo "خطاا در برقراری با پایگاه داده";
-			exit();
+			//exit();
 		}
 	}
 	/* end add event */
@@ -321,6 +365,7 @@ if(isset($_POST["command"]))
 	
 	else if($command == "addabout")
 	{
+		/* dar in ghesmat darbareye hacka be ezafe mishaavad */ 
 		$text = $security->Check_Post($_POST["text"]);
 		$fb = $security->Check_Post($_POST["fb"]);
 		$twitter = $security->Check_Post($_POST["twitter"]);
@@ -343,6 +388,7 @@ if(isset($_POST["command"]))
 	}
 	else if($command == "editabout")
 	{
+		/* Edit About Hacka */
 		$id = intval($_POST["id"]);
 		$text = $security->Check_Post($_POST["text"]);
 		$fb = $security->Check_Post($_POST["fb"]);
@@ -370,10 +416,13 @@ if(isset($_POST["command"]))
 	
 	/* add type event */
 	else if($command == "addtypeevent" && isset($_POST["city"]))
-	{		
+	{
+		/* vase har event ye category dar nazar gereftim mesle hacka city ...
+		vaghti mikhad ye event ezafe beshe category un o entekhab mikone */		
 		$city = $security->Check_Post($_POST["city"]);
 		if(!empty($city))
 		{
+			/* dar in ghesmat check mikone ke name in category ghablan vared shode ast ? */
 			$sql2 = "SELECT * FROM `typeevent` WHERE `name` = ?";
 			$result = $connect->prepare($sql2);
 			$result->bindValue(1,$city);
@@ -387,6 +436,7 @@ if(isset($_POST["command"]))
 				}
 				else
 				{
+					/* agar name an tekrari nabashad ezafe mishe */
 					$sql = "INSERT INTO `typeevent`(`name`) VALUES (?)";		
 					$result = $connect->prepare($sql);
 					$result->bindValue(1,$city);
@@ -427,8 +477,10 @@ if(isset($_POST["command"]))
 		}
 		else
 		{
+			/* dar in if check mishe ke emaile vared shode dorost ast ? */
 			if($security->check_email_address($email))
 			{
+				/* dar in ghesmat tooole password check mishavad */
 				if(strlen($password) < 6 || strlen($password) > 32)
 				{
 					echo "طول پسورد باید بین 6 تا 32 کارکتر باشد .";
@@ -436,6 +488,7 @@ if(isset($_POST["command"]))
 				}
 				else
 				{
+					/* dar in ghesmat check mishe ke emaile ya username tekrari vared nashavad */
 					$sql = "SELECT * FROM `login` WHERE `username` = ? OR `email` = ?";
 					$result = $connect->prepare($sql);
 					$result->bindValue(1,$username);
@@ -450,6 +503,7 @@ if(isset($_POST["command"]))
 						}
 						else
 						{
+							/* add to database */
 							$sql = "INSERT INTO `login`(`username`, `password`, `email`) VALUES (?,?,?)";
 							$result = $connect->prepare($sql);
 							$result->bindValue(1,$username);

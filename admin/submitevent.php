@@ -1,4 +1,6 @@
-<?php require("header.php"); ?>
+<?php 
+require("session.php");
+require("header.php"); ?>
 <div class="submitevent">
 	<div class="title_submit">
     	<div class="texttitle_submit">

@@ -5,10 +5,12 @@
 <title>پنل مدیریت</title>
 <link href="style.css" type="text/css" rel="stylesheet" />
 <link href="jquery.mCustomScrollbar.css" type="text/css" rel="stylesheet" />
+<link href="jquery-ui-1.8.14.css" type="text/css" rel="stylesheet" />
 <link rel="icon" href="../img/favicon.ico" />
 <script language="javascript" src="js/jquery 2.1.3.js"></script>
 <script language="javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="js/index.js"></script>
+<script src="js/jquery.ui.datepicker-cc.all.min.js"></script>
 
 </head>
 

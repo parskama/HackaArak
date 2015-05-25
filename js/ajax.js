@@ -4,7 +4,7 @@ $(document).ready(function() {
 		var password = document.getElementById("password").value;
 		if(username == "" || password == "")
 		{
-			alert("لطفا همه ی فیلد ها را پر کنید");
+			alert("لطفا فیلدهای ضروری را پر کنید");
 		}
 		else
 		{
@@ -37,7 +37,10 @@ $(document).ready(function() {
 		var mail = document.getElementById("mail").value;
 		if(name == "" || lastname == "" || singpass == "" || singpass2 == "" || phone == "" || mail == "")
 		{
-			alert("لطفا همه ی فیلد ها را پر کنید");
+			alert("لطفا فیلدهای ضروری را پر کنید");
+		}
+		else if(singpass!=singpass2){
+			alert('خطا در انتخاب پسورد! از مقادیر یکسان استفاده کنید');
 		}
 		else
 		{

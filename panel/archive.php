@@ -1,10 +1,11 @@
+
 <?php 
-session_start();
+require("session.php");
 require_once("header.php"); ?>
 			<section class="mainContent">
 				<header class="mainheader"> 
 					<label>شهر</label>
-					<select name="" id="" class="select-cities">
+					<select name="" id="selectedcity" class="select-cities">
 						<?php  
 							require("../dataAccessLayer.php");
 							$sql = "SELECT * FROM `city`";
@@ -17,7 +18,7 @@ require_once("header.php"); ?>
 							?>
 					</select>
 					<label>رویداد</label>
-					<select name="" id="" class="select-cities">
+					<select name="" id="selecttypeevent" class="select-cities">
 						<?php
 							$sql = "SELECT * FROM `typeevent`";
 							$result = $connect->query($sql);
@@ -30,11 +31,11 @@ require_once("header.php"); ?>
 					</select>
 					<div id="submitform">
                         <div id="animate"></div>
-                         <b>جستجو</b>
+                        <b id="searchbutton">جستجو</b>
                     </div>				
                 </header>
 				<div class="content-calender content">
-					<ul>
+					<ul id="ul-viewsearch">
                     	<?php 
 							$sql = "SELECT * FROM `event` WHERE `status` = 0 ORDER BY `id`";
 							$result = $connect->query($sql);

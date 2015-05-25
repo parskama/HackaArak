@@ -31,7 +31,7 @@ ul,li{
 #view1{
 	position:relative;
 	width:100%;
-	height:100%;
+	/*height:100%; mobile fix */ 
 }
 /* -------------- header -------------------- */
 #header{
@@ -216,24 +216,8 @@ ul,li{
   	visibility: visible;
   	opacity: 1;
 }
-@media only screen and (min-width: 768px) {
-  	.cd-primary-nav li {
-		margin: 2em 0;
-  }
-  	.cd-primary-nav a {
-    	font-size: 28px;
-    	font-size: 1.75rem;
-  }
-}
-@media only screen and (min-width: 1170px) {
-  	.cd-primary-nav li {
-    	margin: 2.6em 0;
-  	}
-  	.cd-primary-nav a {
-  	  font-size: 32px;
-  	  font-size: 2rem;
-  	}
-}	
+
+	
 
 .cd-overlay-nav, .cd-overlay-content {
   	position: fixed;
@@ -311,21 +295,7 @@ ul,li{
   	line-height: 1.5;
   	color: #a76500;
 }	
-@media only screen and (min-width: 768px) {
-	.cd-content .cd-intro {
-	  height: 250px;
-    	padding-top: 6em;
-	}
-  	.cd-content h1 {
-    	font-size: 28px;
-    	font-size: 1.75rem;
-  	}
-  	.cd-content p {
-    	font-size: 18px;
-    	font-size: 1.125rem;
-    	line-height: 1.8;
-  	}
-}
+
 #signbox{
 	position:relative;
 	display:inline-block;
@@ -346,7 +316,7 @@ ul,li{
 	float:left;
 	left:0px;
 	color:#FFF;
-	width:100px;
+	width:150px;
 	white-space:nowrap;
 }
 #usermsg{
@@ -354,6 +324,9 @@ ul,li{
 	color:#fff;
 	float:right;
 	top: 70px;
+}
+#usermsg a{
+	color:#fff;
 }
 #social li{
 	position:relative;
@@ -829,13 +802,17 @@ img#big{
 }
 #gmapwrapper{
 	position:relative;
+	min-width:960px;
 	width:100%;
 	height:250px;
+	margin:0 auto;
 	margin-top:60px;
 }
 #gmap_canvas{
 	position:relative;
 	height:250px;
+	min-width:960px;
+	margin:0 auto;
 	width:100%;
 	border-top:solid 2px #00D5F3;
 	border-bottom:solid 2px #00D5F3;
@@ -982,12 +959,18 @@ a.tw{
 } 
 /* --------- Login ----------------------- */
 #loginfrm,#signupform,#forgetpassform{
-	position:fixed;
+	position:relative;
 	display:block;
 	width:560px;
-	right:400px;
-	top:150px;
+	margin:0 auto;
+	top:70px;
 	text-align:center;
+}
+#signupform{
+	top:50px;
+}
+#loginfrm,#forgetpassform{
+	top:150px;
 }
 #signupform,#forgetpassform{
 	display:none;
@@ -1009,7 +992,7 @@ a.tw{
 	font-size:18px;
 	margin:7px 0px;
 }
-#loginfrm input,#signupform input,#forgetpassform input{
+#loginfrm input,#signupform input,#forgetpassform input,#signupform select{
 	background:#FFF;
 	border-radius:30px 0px 0px 30px;
 	border:solid 1px #FFF;
@@ -1019,6 +1002,12 @@ a.tw{
 	font-size:18px;
 	margin:0px;
 	font-family:'traffic';
+	float:right;
+}
+#signupform select{
+	padding:7.5px 5px !important;
+	direction:ltr;
+	font-family:'gothic'
 }
 #submitform{
 	position:relative;
@@ -1181,6 +1170,9 @@ span#forgetpass{
 	position:relative;
 	height:150px;
 }
+#archieve_content tr[id='تهران'],#archieve_content tr[id='مشهد'],#archieve_content tr[id='اصفهان'],#archieve_content tr[id='اهواز'],#archieve_content tr[id='شیراز']{
+	display:none;
+}
 #archieve_head li:last-child{
 	border-left:none;
 }
@@ -1224,15 +1216,23 @@ span#forgetpass{
 	position:fixed;
 	bottom:0px;
 	right:0px;
+	left:0px;
+	margin:0 auto;
 	width:100%;
 	height:42px;
 	background:#0097a8;
 	text-align:center;
 	font-family:'gothic';
 	color:#FFF;
+	direction:ltr;
 	font-size:12px;
 	font-weight:normal;
 	line-height:42px;
+}
+#footer img{
+	vertical-align:middle;
+	padding-left:2px;
+	padding-right:2px;
 }
 /* --------- Animation ----------------------- */
 #social li, #social li:hover,#supporters li img:hover,#supporters li img {

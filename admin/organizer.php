@@ -1,5 +1,5 @@
 <?php
-
+require("session.php");
 require("header.php");
 require_once("../dataAccessLayer.php");
 require_once("../func.php");

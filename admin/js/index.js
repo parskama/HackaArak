@@ -216,3 +216,11 @@ $(document).ready(function() {
 		});
     });
 });
+$(document).ready(function(e) {
+    $('#dateevent,#enddateevent').datepicker({
+		changeMonth: true,
+		changeYear: true,
+		dateFormat: 'yy/mm/dd',
+
+	});
+});

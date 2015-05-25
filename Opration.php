@@ -23,7 +23,7 @@ if(isset($_POST["command"]))
 		{
 			if(strlen($password) < 6 || strlen($password) > 32)
 			{
-				echo "پسورد شما اشتباه است";
+				echo "کلمه عبور باید رشته ای بین 6 تا 32 کاراکتر باشد";
 				exit();
 			}
 			else
@@ -99,7 +99,7 @@ if(isset($_POST["command"]))
 			$password = md5(sha1($security->Check_Post($_POST["password"])));
 			if(empty($username) || empty($password))
 			{
-				echo "empty";
+				echo "لطفا فیلدهای ضروری را پر کنید";
 				exit();
 			}
 			else
@@ -134,13 +134,13 @@ if(isset($_POST["command"]))
 					}
 					else
 					{
-						echo "erroruserpass";
+						echo "نام کاربری یا کلمه عبور اشتباه است";
 						exit();
 					}
 				}
 				else
 				{
-					echo "db";
+					echo "خطایی رخ داده است! مجددا تلاش کنید";
 					exit();
 				}
 			}
@@ -152,6 +152,42 @@ if(isset($_POST["command"]))
 		}
 		
 	}/* end login */
+	
+	/* login admin */
+	else if($command == "loginadmin")
+	{
+		$user = $security->Check_Post($_POST["username"]);
+		$password = md5(sha1($security->Check_Post($_POST["password"])));
+		$sql = "SELECT * FROM `login` WHERE `username` = ? AND `password` = ?";
+		$result = $connect->prepare($sql);
+		$result->bindValue(1,$user);
+		$result->bindValue(2,$password);
+		$check = $result->execute();
+		if($check)
+		{
+			if($result->rowCount() == 1)
+			{
+				session_start();
+				$_SESSION["user_a"] = $user ; 
+				$_SESSION["checkp_a"] = $password ; 
+				$_SESSION["timeout_a"] =time() ;
+				$_SESSION["checki_a"] = md5($security->GetRealIp());
+				$security->redirect("http://localhost/hackairan/admin");
+				exit();
+			}
+			else
+			{
+				echo "wrong";
+				$security->redirect2("admin-login","error=userorpass");
+				exit();
+			}
+		}
+		else
+		{
+			$security->redirect2("admin-login","error=problem");
+			exit();
+		}
+	}
 }
 
 

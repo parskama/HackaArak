@@ -3,9 +3,9 @@ require("session.php");
 ?>
 <?php require("header.php"); ?>
 			<section class="mainContent">
-				<!--<header class="mainheader"> 
+				<header class="mainheader"> 
 					<label>شهر</label>
-					<select name="" id="" class="select-cities">
+					<select name="" id="selectedcity" class="select-cities">
 						<?php  
 							require("../dataAccessLayer.php");
 							$sql = "SELECT * FROM `city`";
@@ -18,7 +18,7 @@ require("session.php");
 							?>
 					</select>
 					<label>رویداد</label>
-					<select name="" id="" class="select-cities">
+					<select name="" id="selecttypeevent" class="select-cities">
 						<?php
 							$sql = "SELECT * FROM `typeevent`";
 							$result = $connect->query($sql);
@@ -31,18 +31,18 @@ require("session.php");
 					</select>
 					<div id="submitform">
                         <div id="animate"></div>
-                         <b>جستجو</b>
+                         <b id="searchbutton">جستجو</b>
                     </div>				
-                </header>-->
+                </header>
 				<div class="content-calender content">
-					<ul>
+					<ul id="ul-viewsearch">
                     	<?php 
 							$sql = "SELECT * FROM `event` WHERE `status` = 0 ORDER BY `id`";
 							$result = $connect->query($sql);
 							while($row = $result->fetch(PDO::FETCH_ASSOC))
 							{
 						?>
-						<li id="liview" name="<?php echo $row["id"]; ?>">
+						<li id="liview" onClick="eventreg(<?php echo $row["id"]; ?>);">
 							<span id="spanname<?php echo $row["id"]; ?>"><?php echo $row["nameevent"]; ?></span>	
 							<span id="spandatestar<?php echo $row["id"]; ?>"><?php echo $row["datestart"]; ?></span>	
 							<span ><?php echo $row["timestart"]; if($row["timestartpm"] == 1) echo "PM";else echo "AM"; ?></span>	

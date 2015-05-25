@@ -9,6 +9,13 @@
 	<html>
 		<head>
 			<meta charset="utf-8">
+			<meta name="programmer" content="Mostafa Zeinivand, PHP & UI Developer">
+			<meta name="programmer" content="Hamid Zarghami, PHP Developer & UI Developer">
+			<meta name="programmer" content="Aref Araghi, Graphic Designer">
+			<meta name="programmer" content="Farhood Alimohamadi, Android Developer">
+			<meta name="programmer" content="Niloofar Hajian, UI Designer">
+			<meta name="programmer" content="Mehrdad Mozafari, UI,UX Designer">
+			<meta name="programmer" content="Ava Sharif, UI Designer">
 			<title>هاکا ایران</title>
             
             <link rel="stylesheet" type="text/css" href="css/iStyle.css" />
@@ -28,34 +35,14 @@
             <script type="text/javascript" src="js/iScript.js" ></script>
             <script src="js/ajax.js"></script>
             <script type="text/javascript">
-			function init_map(){
-				var myOptions = {
-					zoom:3,
-					center:new google.maps.LatLng(34.102201, 49.711705),
-					mapTypeId: google.maps.MapTypeId.ROADMAP
-				};
-				map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
-				marker = new google.maps.Marker({
-					map: map,position: new google.maps.LatLng(34.102201, 49.711705)
-				});
-				infowindow = new google.maps.InfoWindow({
-					content:"<b>نام محل برگزاری</b><br/>آدرس برگزاری رویداد بعدی"
-				});
-				google.maps.event.addListener(marker, "click", function(){
-					infowindow.open(map,marker);
-				});
-				infowindow.open(map,marker);
-			}google.maps.event.addDomListener(window, 'load', init_map);
-        	</script>
-            <script type="text/javascript">
-			
 			<?php
-				$db = new PDO("mysql:host=localhost; dbname=hacka; charset=UTF8", "root", "");
-				$stmt = $db->prepare("SELECT * FROM `event` WHERE `city`='اراک' ORDER BY id DESC") or die(mysql_error);
+				require_once("dataAccessLayer.php");
+				$stmt = $connect->prepare("SELECT * FROM `event` WHERE `city`='اراک' ORDER BY id DESC LIMIT 1") or die(mysql_error);
 				$stmt->execute()  or die(mysql_error);
 				$arak=array();
 				foreach($stmt as $row){
 					$date=explode('/',$row['datestart']);
+					$map=explode(',',$row['map']);
 					if($row['timestart']=="1")
 						$sup="AM";
 					else
@@ -66,15 +53,18 @@
 					$arak[2]=$row['timestart'];
 					$arak[3]=$sup;
 					$arak[4]=$row['location'];
+					$arak[5]=$map[0];
+					$arak[6]=$map[1];
 				}
 			?>
 			<?php
-				$db = new PDO("mysql:host=localhost; dbname=hacka; charset=UTF8", "root", "");
-				$stmt = $db->prepare("SELECT * FROM `event` WHERE `city`='تهران' ORDER BY id DESC") or die(mysql_error);
+				
+				$stmt = $connect->prepare("SELECT * FROM `event` WHERE `city`='تهران' ORDER BY id DESC LIMIT 1") or die(mysql_error);
 				$stmt->execute()  or die(mysql_error);
 				$tehran=array();
 				foreach($stmt as $row){
 					$date=explode('/',$row['datestart']);
+					$map=explode(',',$row['map']);
 					if($row['timestart']=="1")
 						$sup="AM";
 					else
@@ -85,15 +75,19 @@
 					$tehran[2]=$row['timestart'];
 					$tehran[3]=$sup;
 					$tehran[4]=$row['location'];
+					$tehran[5]=$map[0];
+					$tehran[6]=$map[1];
+					
 				}
 			?>
 			<?php
-				$db = new PDO("mysql:host=localhost; dbname=hacka; charset=UTF8", "root", "");
-				$stmt = $db->prepare("SELECT * FROM `event` WHERE `city`='اصفهان' ORDER BY id DESC") or die(mysql_error);
+				
+				$stmt = $connect->prepare("SELECT * FROM `event` WHERE `city`='اصفهان' ORDER BY id DESC LIMIT 1") or die(mysql_error);
 				$stmt->execute()  or die(mysql_error);
 				$isfahan=array();
 				foreach($stmt as $row){
 					$date=explode('/',$row['datestart']);
+					$map=explode(',',$row['map']);
 					if($row['timestart']=="1")
 						$sup="AM";
 					else
@@ -104,15 +98,17 @@
 					$isfahan[2]=$row['timestart'];
 					$isfahan[3]=$sup;
 					$isfahan[4]=$row['location'];
+					$isfahan[5]=$map[0];
+					$isfahan[6]=$map[1];
 				}
 			?>
-			<?php
-				$db = new PDO("mysql:host=localhost; dbname=hacka; charset=UTF8", "root", "");
-				$stmt = $db->prepare("SELECT * FROM `event` WHERE `city`='اهواز' ORDER BY id DESC") or die(mysql_error);
+			<?php				
+				$stmt = $connect->prepare("SELECT * FROM `event` WHERE `city`='اهواز' ORDER BY id DESC LIMIT 1") or die(mysql_error);
 				$stmt->execute()  or die(mysql_error);
 				$ahwaz=array();
 				foreach($stmt as $row){
 					$date=explode('/',$row['datestart']);
+					$map=explode(',',$row['map']);
 					if($row['timestart']=="1")
 						$sup="AM";
 					else
@@ -123,15 +119,17 @@
 					$ahwaz[2]=$row['timestart'];
 					$ahwaz[3]=$sup;
 					$ahwaz[4]=$row['location'];
+					$ahwaz[5]=$map[0];
+					$ahwaz[6]=$map[1];
 				}
 			?>
-			<?php
-				$db = new PDO("mysql:host=localhost; dbname=hacka; charset=UTF8", "root", "");
-				$stmt = $db->prepare("SELECT * FROM `event` WHERE `city`='مشهد' ORDER BY id DESC") or die(mysql_error);
+			<?php				
+				$stmt = $connect->prepare("SELECT * FROM `event` WHERE `city`='مشهد' ORDER BY id DESC LIMIT 1") or die(mysql_error);
 				$stmt->execute()  or die(mysql_error);
 				$mashhad=array();
 				foreach($stmt as $row){
 					$date=explode('/',$row['datestart']);
+					$map=explode(',',$row['map']);
 					if($row['timestart']=="1")
 						$sup="AM";
 					else
@@ -142,15 +140,18 @@
 					$mashhad[2]=$row['timestart'];
 					$mashhad[3]=$sup;
 					$mashhad[4]=$row['location'];
+					$mashhad[5]=$map[0];
+					$mashhad[6]=$map[1];
 				}
 			?>
 			<?php
-				$db = new PDO("mysql:host=localhost; dbname=hacka; charset=UTF8", "root", "");
-				$stmt = $db->prepare("SELECT * FROM `event` WHERE `city`='شیراز' ORDER BY id DESC") or die(mysql_error);
+				
+				$stmt = $connect->prepare("SELECT * FROM `event` WHERE `city`='شیراز' ORDER BY id DESC LIMIT 1") or die(mysql_error);
 				$stmt->execute()  or die(mysql_error);
 				$shiraz=array();
 				foreach($stmt as $row){
 					$date=explode('/',$row['datestart']);
+					$map=explode(',',$row['map']);
 					if($row['timestart']=="1")
 						$sup="AM";
 					else
@@ -161,6 +162,8 @@
 					$shiraz[2]=$row['timestart'];
 					$shiraz[3]=$sup;
 					$shiraz[4]=$row['location'];
+					$shiraz[5]=$map[0];
+					$shiraz[6]=$map[1];
 				}
 			?>
 			
@@ -173,6 +176,59 @@
 			?>
 				//MeetUpCalendar(c_days[3],c_month[3]);
 			</script>
+            <script type="text/javascript">
+			function init_map(){
+				var locs = [
+					['اراک',<?php echo "'".$arak[4]."',".$arak[5].",".$arak[6]; ?>],
+					['تهران',<?php echo "'".$tehran[4]."',".$tehran[5].",".$tehran[6]; ?>],
+					['شیراز',<?php echo "'".$shiraz[4]."',".$shiraz[5].",".$shiraz[6]; ?>],
+					['مشهد',<?php echo "'".$mashhad[4]."',".$mashhad[5].",".$mashhad[6]; ?>],
+					['اصفهان',<?php echo "'".$isfahan[4]."',".$isfahan[5].",".$isfahan[6]; ?>],
+					['اهواز',<?php echo "'".$ahwaz[4]."',".$ahwaz[5].",".$ahwaz[6]; ?>],
+				];
+				var myOptions = {
+					zoom:3,
+					center:new google.maps.LatLng(34.102201, 49.711705),
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					scrollwheel: false,
+					mapTypeControl: false,
+					draggable: true,
+					navigationControl: true,
+					scaleControl: true,
+					panControl:true,
+					scaleControl:true,
+					streetViewControl:false,
+					overviewMapControl:false,
+					rotateControl:false,
+					mapTypeControlOptions: {
+						style                   : google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+						position                : google.maps.ControlPosition.TOP_RIGHT
+					},
+					zoomControl: true,
+					zoomControlOptions: {
+						style                   : google.maps.ZoomControlStyle.LARGE,
+						position                : google.maps.ControlPosition.TOP_RIGHT
+					}
+				};
+				var marker=[];
+				map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
+				for(l in locs){
+					marker[l] = new google.maps.Marker({
+						map: map,
+						title: locs[l][0],
+						html: "<br><b>"+locs[l][1]+"</b>",
+						position: new google.maps.LatLng(locs[l][2], locs[l][3])
+					});
+					infowindow = new google.maps.InfoWindow({
+						content:locs[l][0]
+					});
+					google.maps.event.addListener(marker[l], "click", function(){
+						infowindow.setContent(this.html);
+						infowindow.open(map,this);
+					});
+				}
+			}google.maps.event.addDomListener(window, 'load', init_map);
+        	</script>
 		</head>
 
 		<body>
@@ -234,6 +290,16 @@
                                     <td><input type="password" name="singpass" id="singpass2" /></td>
                                 </tr>
                                 <tr>
+                                	<td><label for="specialty">تخصص</label></td>
+                                    <td>
+                                    	<select>
+                                        	<option value="dev">Developer</option>
+                                            <option value="ui">UI Designer</option>
+                                            <option value="ux">UX Designer</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
                                 	<td><label for="phone">شماره تماس</label></td>
                                     <td><input type="text" name="phone" id="phone" /></td>
                                 </tr>
@@ -289,10 +355,10 @@
                     	<a href="#" id="circlepopTrigger" onClick="loginfunc('1');">عضویت</a>&nbsp;|&nbsp;
                     	<a href="#" id="circlepopTrigger" onClick="loginfunc('2');">ورود</a>
                     </div>
-                    <?php }else echo "<div id='usermsg'>".$username_session." عزیز خوش آمدید</div>"; ?>
+                    <?php }else echo "<a href='panel/'><div id='usermsg'>".$username_session." عزیز خوش آمدید</div></a>"; ?>
                     <div id="social">
                     	<ul>
-                        	<li title="دانلود اپلیکیشن اندروید" class="tooltip"><a href="#"><img src="img/app-icon.png" /></a></li>
+                        	<li title="دانلود اپلیکیشن اندروید هاکا" class="tooltip"><a href="http://arak.hackaglobal.ir/site1/app/android/Hacka%20Iran.apk"><img src="img/app-icon.png" /></a></li>
                         	<li title="فیسبوک" class="tooltip"><a href="https://facebook.com/hackaIran"><img src="img/fb-icon.png" /></a></li>
                             <li title="توییتر" class="tooltip"><a href="https://twitter.com/hackaIran"><img src="img/twitter-icon.png" /></a></li>
                         </ul>
@@ -300,7 +366,7 @@
             	</div>
             <!-- end header -->
             <!-- logo -->
-            	<div id="logo"><img usemap="#imgmap" src="img/main-pic.png"/></div>
+            	<div id="logo"><img usemap="#imgmap" src="img/main-pic-1.png"/></div>
                 <map id="imgmap" name="imgmap">
                     <area shape="rect" coords="107,45,233,102" title="" alt="" href="#hackaglobal" onClick="p_kit('HACKA GLOBAL');">
                     <area shape="rect" coords="267,57,376,172" title="" alt="" href="#login" onClick="p_kit('YOUR NAME');">
@@ -416,16 +482,16 @@
                             </td>
                             <td id="time">
                             	<span>میت آب بعـــدی</span>
-                                <span id="date">16:15 <sup>PM</sup></span>
+                                <span id="date"><?php echo $arak[2]; ?> <sup><?php echo $arak[3]; ?></sup></span>
                             </td>
                             <td id="place"><img src="img/location-icon.png" /></td>
-                            <td id="address">اراک، دانشگاه اراک ساختمان فنی</td>
+                            <td id="address"><?php echo $arak[4]; ?></td>
                             <td class="btns" id="lb"><button onClick="prevtbn(this);" class="meetup_btn tooltip" id="prev" title="رویداد قبلی" class="tooltip" value="0"></button></td>
                         </tr>
                     </table>
                 </div>
                 <!-- end meetup_board -->
-
+                
         </div>
         <!-- end meetup -->
         </div>
@@ -455,8 +521,8 @@
             <!-- section i -->
             	
                         <?php
-							$db = new PDO("mysql:host=localhost; dbname=hacka; charset=UTF8", "root", "");
-							$stmt = $db->prepare("SELECT * FROM `organizer` ORDER BY `id` DESC LIMIT 3") or die(mysql_error);
+							
+							$stmt = $connect->prepare("SELECT * FROM `organizer` ORDER BY `id` DESC LIMIT 3") or die(mysql_error);
 							$stmt->execute()  or die(mysql_error);
 							$c=1;
 							foreach($stmt as $row){
@@ -492,47 +558,17 @@
                 <div id="archieve_content" class="content">
                 	<table>
                     <?php
-							$db = new PDO("mysql:host=localhost; dbname=hacka; charset=UTF8", "root", "");
-							$stmt = $db->prepare("SELECT * FROM `event` ORDER BY `id` DESC LIMIT 15") or die(mysql_error);
+							$stmt = $connect->prepare("SELECT * FROM `event` ORDER BY `id` DESC LIMIT 15") or die(mysql_error);
 							$stmt->execute()  or die(mysql_error);
 							foreach($stmt as $row){
-								echo "<tr>
+								echo "<tr id='".$row['city']."'>
 										<td>".$row['nameevent']."</td>
 										<td>".$row['datestart']."</td>
 										<td>".$row['dateend']."</td>
 									</tr>";
 							}
 					?>
-                    	<tr>
-                        	<td>هاکا گلوبال</td>
-                            <td>جمعه 25 اردیبهشت 1394</td>
-                            <td>1 روز</td>
-                        </tr>
-                        <tr>
-                        	<td>هاکا گلوبال</td>
-                            <td>جمعه 25 اردیبهشت 1394</td>
-                            <td>1 روز</td>
-                        </tr>
-                        <tr>
-                        	<td>هاکا گلوبال</td>
-                            <td>جمعه 25 اردیبهشت 1394</td>
-                            <td>1 روز</td>
-                        </tr>
-                        <tr>
-                        	<td>هاکا گلوبال</td>
-                            <td>جمعه 25 اردیبهشت 1394</td>
-                            <td>1 روز</td>
-                        </tr>
-                        <tr>
-                        	<td>هاکا گلوبال</td>
-                            <td>جمعه 25 اردیبهشت 1394</td>
-                            <td>1 روز</td>
-                        </tr>
-                        <tr>
-                        	<td>هاکا گلوبال</td>
-                            <td>جمعه 25 اردیبهشت 1394</td>
-                            <td>1 روز</td>
-                        </tr>
+                    	
                     </table>
                 </div>
             </div>
@@ -552,7 +588,7 @@
 		
         <!-- footer -->
         	<div id="footer">
-            	<span>Copyright ©2015, All Rights Reserved</span>
+            	<span>Copyright ©2015, All Rights Reserved <a href='https://github.com/parskama/HackaArak'><img src='img/github-icon.png' /></a></span>
             </div>
         <!-- end footer -->
 		</body>

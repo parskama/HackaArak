@@ -31,13 +31,14 @@
 				$result->bindValue(1,$mail);
 				$result->bindValue(2,$pass);
 				$check = $result->execute();
+				$count = $result->rowCount();
 				if($check)
 				{
-					if($result->rowCount() >= 1)
+					if($count != 1)
 					{
-						session_destroy();
-						$security->redirect("../index.php?cmd");
-						exit();
+						//session_destroy();
+						//$security->redirect("../index.php?cmd=".$count."");
+						//exit();
 					}
 					else
 					{
